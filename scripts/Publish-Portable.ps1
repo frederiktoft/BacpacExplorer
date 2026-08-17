@@ -1,5 +1,8 @@
 [CmdletBinding()]
-param()
+param(
+    [ValidatePattern('^\d+\.\d+\.\d+$')]
+    [string]$Version
+)
 
 $ErrorActionPreference = 'Stop'
 $repositoryRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -26,7 +29,19 @@ if (Test-Path -LiteralPath $archivePath)
 }
 
 New-Item -ItemType Directory -Path $artifactsDirectory -Force | Out-Null
-dotnet publish $projectPath -p:PublishProfile=Portable-win-x64 -o $publishDirectory
+$publishArguments = @(
+    $projectPath
+    '-p:PublishProfile=Portable-win-x64'
+    '-o'
+    $publishDirectory
+)
+
+if ($Version)
+{
+    $publishArguments += "-p:Version=$Version"
+}
+
+dotnet publish @publishArguments
 if ($LASTEXITCODE -ne 0)
 {
     throw "dotnet publish failed with exit code $LASTEXITCODE."

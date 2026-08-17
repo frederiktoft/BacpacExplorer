@@ -1,0 +1,81 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-release:
+    name: Build and publish release
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_NOLOGO: true
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Validate release tag
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF_NAME -notmatch '^v\d+\.\d+\.\d+$') {
+              throw "Release tags must use the format v1.2.3."
+          }
+
+          "RELEASE_VERSION=$($env:GITHUB_REF_NAME.Substring(1))" >> $env:GITHUB_ENV
+
+      - name: Restore
+        run: dotnet restore BacpacExplorer.sln
+
+      - name: Build
+        run: dotnet build BacpacExplorer.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test BacpacExplorer.sln --configuration Release --no-build --logger "console;verbosity=normal"
+
+      - name: Package portable application
+        shell: pwsh
+        run: .\scripts\Publish-Portable.ps1 -Version $env:RELEASE_VERSION
+
+      - name: Verify package
+        shell: pwsh
+        run: |
+          $archivePath = '.\artifacts\BacpacExplorer-win-x64.zip'
+          $executablePath = '.\artifacts\BacpacExplorer-win-x64\BacpacExplorer.exe'
+
+          if (-not (Test-Path -LiteralPath $archivePath -PathType Leaf)) {
+              throw "The release archive was not created."
+          }
+
+          if (-not (Test-Path -LiteralPath $executablePath -PathType Leaf)) {
+              throw "The release executable was not created."
+          }
+
+          $fileVersion = [Diagnostics.FileVersionInfo]::GetVersionInfo(
+              (Resolve-Path $executablePath)).FileVersion
+          if (-not $fileVersion.StartsWith("$env:RELEASE_VERSION.")) {
+              throw "Expected executable version $env:RELEASE_VERSION but found $fileVersion."
+          }
+
+      - name: Create GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create $env:GITHUB_REF_NAME '.\artifacts\BacpacExplorer-win-x64.zip' --verify-tag --generate-notes --title "BACPAC Explorer $env:GITHUB_REF_NAME"
