@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="BacpacNotFound" xml:space="preserve"><value>The selected BACPAC file was not found.</value></data>
+  <data name="InvalidBacpac" xml:space="preserve"><value>'{0}' could not be opened as a valid BACPAC. {1}</value></data>
+  <data name="TemporaryDatabaseNotPrepared" xml:space="preserve"><value>The temporary database has not been prepared.</value></data>
+  <data name="StartingLocalDb" xml:space="preserve"><value>Starting SQL Server LocalDB...</value></data>
+  <data name="ImportingData" xml:space="preserve"><value>Importing schema and table data. This can take a while...</value></data>
+  <data name="ImportComplete" xml:space="preserve"><value>Import complete.</value></data>
+  <data name="ImportFailed" xml:space="preserve"><value>The BACPAC could not be imported into SQL Server LocalDB. {0}</value></data>
+  <data name="LocalDbUnavailable" xml:space="preserve"><value>SQL Server LocalDB is unavailable. Install SQL Server Express LocalDB and ensure the MSSQLLocalDB instance can start.</value></data>
+  <data name="EnterSelect" xml:space="preserve"><value>Enter a SELECT query.</value></data>
+  <data name="SingleSelectOnly" xml:space="preserve"><value>Only one SELECT statement can be executed at a time.</value></data>
+  <data name="SelectIntoRejected" xml:space="preserve"><value>SELECT INTO is not allowed because it creates a table.</value></data>
+  <data name="CrossDatabaseRejected" xml:space="preserve"><value>Cross-database and server-qualified object names are not allowed.</value></data>
+  <data name="ParseError" xml:space="preserve"><value>Line {0}, column {1}: {2}</value></data>
+  <data name="QueryValidationFailed" xml:space="preserve"><value>Query validation failed.</value></data>
+  <data name="PageSizeLimit" xml:space="preserve"><value>Page size cannot exceed 1,000 rows.</value></data>
+  <data name="OpeningBracketPosition" xml:space="preserve"><value>An opening bracket must start an identifier part.</value></data>
+  <data name="UnclosedBracket" xml:space="preserve"><value>The SQL identifier contains an unclosed bracket.</value></data>
+  <data name="EmptyIdentifierPart" xml:space="preserve"><value>The SQL identifier contains an empty part.</value></data>
+  <data name="TableMissingSchema" xml:space="preserve"><value>Table '{0}' does not have a schema-qualified name.</value></data>
+  <data name="ColumnMissingName" xml:space="preserve"><value>A table column has no name.</value></data>
+  <data name="ColumnMissingType" xml:space="preserve"><value>Column '{0}' has no data type.</value></data>
+  <data name="ColumnUnnamedType" xml:space="preserve"><value>Column '{0}' has an unnamed data type.</value></data>
+  <data name="BinaryPreview" xml:space="preserve"><value>{0}… ({1:N0} bytes)</value></data>
+  <data name="GeneratedColumnName" xml:space="preserve"><value>Column{0}</value></data>
+</root>

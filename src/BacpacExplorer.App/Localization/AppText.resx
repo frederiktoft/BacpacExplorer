@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="WindowTitle" xml:space="preserve"><value>BACPAC Explorer</value></data>
+  <data name="OpenBacpac" xml:space="preserve"><value>Open BACPAC...</value></data>
+  <data name="LoadDatabaseData" xml:space="preserve"><value>Load Database Data...</value></data>
+  <data name="DatabaseDataReady" xml:space="preserve"><value>Database Data Ready</value></data>
+  <data name="NoFileLoaded" xml:space="preserve"><value>No file loaded</value></data>
+  <data name="NoDatabaseLoaded" xml:space="preserve"><value>No database loaded</value></data>
+  <data name="Explorer" xml:space="preserve"><value>Explorer</value></data>
+  <data name="Query" xml:space="preserve"><value>Query</value></data>
+  <data name="FilterTables" xml:space="preserve"><value>Filter tables</value></data>
+  <data name="OpenBacpacPrompt" xml:space="preserve"><value>Open a BACPAC</value></data>
+  <data name="TableInformationPrompt" xml:space="preserve"><value>Schema and row information appears here.</value></data>
+  <data name="Columns" xml:space="preserve"><value>Columns</value></data>
+  <data name="Column" xml:space="preserve"><value>Column</value></data>
+  <data name="SqlType" xml:space="preserve"><value>SQL type</value></data>
+  <data name="Nullability" xml:space="preserve"><value>Nullability</value></data>
+  <data name="Data" xml:space="preserve"><value>Data</value></data>
+  <data name="RowsPerPage" xml:space="preserve"><value>Rows per page:</value></data>
+  <data name="NoDataLoaded" xml:space="preserve"><value>No data loaded</value></data>
+  <data name="SelectedCellValue" xml:space="preserve"><value>Selected cell value</value></data>
+  <data name="SelectedResultValue" xml:space="preserve"><value>Selected result value</value></data>
+  <data name="SelectCellPrompt" xml:space="preserve"><value>Select a cell to inspect its complete value.</value></data>
+  <data name="SelectResultCellPrompt" xml:space="preserve"><value>Select a result cell to inspect its complete value.</value></data>
+  <data name="Previous" xml:space="preserve"><value>Previous</value></data>
+  <data name="Next" xml:space="preserve"><value>Next</value></data>
+  <data name="PagingNotice" xml:space="preserve"><value>Pages use a bounded read-only SELECT. Row order is currently unspecified.</value></data>
+  <data name="Execute" xml:space="preserve"><value>Execute</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="QuerySelectedTable" xml:space="preserve"><value>Query Selected Table</value></data>
+  <data name="QueryLimits" xml:space="preserve"><value>Read-only · 1,000-row maximum · 30-second timeout</value></data>
+  <data name="ResizeQueryToolTip" xml:space="preserve"><value>Drag to resize the query editor and results</value></data>
+  <data name="Messages" xml:space="preserve"><value>Messages</value></data>
+  <data name="QueryInitialMessage" xml:space="preserve"><value>Load database data, then execute a read-only SELECT query.</value></data>
+  <data name="Ready" xml:space="preserve"><value>Ready</value></data>
+  <data name="DefaultQuery" xml:space="preserve"><value>SELECT DB_NAME() AS [DatabaseName],&#xA;       SYSDATETIME() AS [CurrentDatabaseTime];</value></data>
+  <data name="OpenDialogTitle" xml:space="preserve"><value>Open BACPAC</value></data>
+  <data name="OpenDialogFilter" xml:space="preserve"><value>BACPAC files (*.bacpac)|*.bacpac|All files (*.*)|*.*</value></data>
+  <data name="ReadingPackage" xml:space="preserve"><value>Reading package...</value></data>
+  <data name="LoadedPackage" xml:space="preserve"><value>Loaded {0}: {1:N0} schemas, {2:N0} tables</value></data>
+  <data name="DatabaseSummary" xml:space="preserve"><value>Database: {0} · {1} · {2:N0} schemas · {3:N0} tables · {4:N0} package entries</value></data>
+  <data name="SelectTable" xml:space="preserve"><value>Select a table</value></data>
+  <data name="TableSpecificInformation" xml:space="preserve"><value>Table-specific schema and row information appears here.</value></data>
+  <data name="SelectTableColumns" xml:space="preserve"><value>Select a table to inspect its columns.</value></data>
+  <data name="FailedReadPackage" xml:space="preserve"><value>Failed to read package</value></data>
+  <data name="OpeningBacpacOperation" xml:space="preserve"><value>opening the BACPAC</value></data>
+  <data name="SchemaTableCount" xml:space="preserve"><value>{0} ({1:N0})</value></data>
+  <data name="ColumnCount" xml:space="preserve"><value>{0:N0} columns</value></data>
+  <data name="DataReadyForTable" xml:space="preserve"><value>Database data is ready. Open the Data tab to view this table.</value></data>
+  <data name="LoadDataInstruction" xml:space="preserve"><value>Use Load Database Data in the top toolbar to import all stored rows into a disposable LocalDB database.</value></data>
+  <data name="DataReadySelectTable" xml:space="preserve"><value>Database data is ready. Select a table to view its rows.</value></data>
+  <data name="CouldNotPrepareTableData" xml:space="preserve"><value>Could not prepare table data</value></data>
+  <data name="LoadingTableDataOperation" xml:space="preserve"><value>loading table data</value></data>
+  <data name="OpenBeforeData" xml:space="preserve"><value>Open a BACPAC before loading database data.</value></data>
+  <data name="ImportedDataInstruction" xml:space="preserve"><value>The full BACPAC has been imported. Select a table and open the Data tab to view its rows.</value></data>
+  <data name="PreparingDatabaseData" xml:space="preserve"><value>Preparing database data...</value></data>
+  <data name="ExecutingQuery" xml:space="preserve"><value>Executing query...</value></data>
+  <data name="ExecutingReadOnlyQuery" xml:space="preserve"><value>Executing read-only query...</value></data>
+  <data name="QuerySummary" xml:space="preserve"><value>Returned {0:N0} row(s) in {1:N0} ms.</value></data>
+  <data name="QueryTruncated" xml:space="preserve"><value> Results were limited to the first 1,000 rows.</value></data>
+  <data name="QueryCancelledSentence" xml:space="preserve"><value>Query cancelled.</value></data>
+  <data name="QueryCancelled" xml:space="preserve"><value>Query cancelled</value></data>
+  <data name="QueryFailed" xml:space="preserve"><value>Query failed</value></data>
+  <data name="CouldNotPrepareDatabaseData" xml:space="preserve"><value>Could not prepare database data</value></data>
+  <data name="ExecutingQueryOperation" xml:space="preserve"><value>executing the query</value></data>
+  <data name="GeneratedTableQuery" xml:space="preserve"><value>SELECT TOP (100) *&#xA;FROM {0};</value></data>
+  <data name="SelectedCellLabel" xml:space="preserve"><value>Selected cell: {0}</value></data>
+  <data name="NullValue" xml:space="preserve"><value>NULL</value></data>
+  <data name="LoadingDataPageOperation" xml:space="preserve"><value>loading the data page</value></data>
+  <data name="ReadingTable" xml:space="preserve"><value>Reading {0}...</value></data>
+  <data name="NoRows" xml:space="preserve"><value>No rows</value></data>
+  <data name="RowsRange" xml:space="preserve"><value>Rows {0:N0}–{1:N0}</value></data>
+  <data name="LoadedRows" xml:space="preserve"><value>Loaded {0:N0} rows from {1}</value></data>
+  <data name="SelectTableRows" xml:space="preserve"><value>Select a table to view rows</value></data>
+  <data name="LoadDataFromToolbar" xml:space="preserve"><value>Load database data from the top toolbar</value></data>
+  <data name="DialogCaption" xml:space="preserve"><value>BACPAC Explorer</value></data>
+  <data name="UnexpectedErrorStatus" xml:space="preserve"><value>An unexpected error occurred</value></data>
+  <data name="UnexpectedErrorMessage" xml:space="preserve"><value>An unexpected error occurred while {0}. See the diagnostic output for details.</value></data>
+  <data name="ByteUnits" xml:space="preserve"><value>B|KB|MB|GB|TB</value></data>
+</root>

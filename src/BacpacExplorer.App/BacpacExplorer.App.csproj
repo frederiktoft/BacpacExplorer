@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>BacpacExplorer</AssemblyName>
+    <Product>BACPAC Explorer</Product>
+    <Authors>Frederik Rex Rytter Toft</Authors>
+    <Company>Frederik Rex Rytter Toft</Company>
+    <Copyright>Copyright © 2026 Frederik Rex Rytter Toft</Copyright>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="4.4.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+    <ProjectReference Include="..\BacpacExplorer.Core\BacpacExplorer.Core.csproj" />
+  </ItemGroup>
+</Project>
