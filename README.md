@@ -76,6 +76,8 @@ To create the portable release ZIP:
 ```powershell
 .\scripts\Publish-Portable.ps1
 ```
+## AI usage disclosure
+This application has initially been almost exclusively created with GPT 5.6 Sol. With that said, I have been a developer since 2008 and professionally since 2011, it has been created under my strict requirements and guidelines using my long time experience as a developer.
 
 ## License
 
