@@ -14,6 +14,14 @@ A BACPAC normally contains a database's structure and data. BACPAC Explorer lets
 
 The original BACPAC file is never changed.
 
+## Screenshots
+
+![Browse database schemas, tables, and columns](screenshots/Screenshot-01.png)
+
+![View stored table rows and complete cell values](screenshots/Screenshot-02.png)
+
+![Run read-only queries and inspect their results](screenshots/Screenshot-03.png)
+
 ## What do I need?
 
 - 64-bit Windows.
