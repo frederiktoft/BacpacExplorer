@@ -29,6 +29,7 @@ The original BACPAC file is never changed.
 - [SQL Server Express LocalDB](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb) if you want to view rows or run queries.
 
 LocalDB is the lightweight database component used by the application. You do not need a full SQL Server installation or SQL Server Management Studio. You can browse schemas and columns without LocalDB, but viewing data and querying require it.
+If you have Visual Studio installed, you most likely already have the prerequisites installed as well.
 
 ## Getting started
 
@@ -84,6 +85,9 @@ To create the portable release ZIP:
 ```powershell
 .\scripts\Publish-Portable.ps1
 ```
+## Future
+If I ever get around to it, I would eventually make this a web based application instead of a WPF desktop application, maybe build it in Blazor. Making it a WPF application was just faster to get going and iterate on. The core logic has been decoupled as much as possible from the presentation layer, so it should not be that big of a task. Eventually.
+
 ## AI usage disclosure
 This application has initially been almost exclusively created with GPT 5.6 Sol. With that said, I have been a developer since 2008 and professionally since 2011, it has been created under my strict requirements and guidelines using my long time experience as a developer.
 
