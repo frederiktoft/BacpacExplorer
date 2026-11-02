@@ -4,7 +4,57 @@
         xmlns:loc="clr-namespace:BacpacExplorer.App.Localization"
         Title="{loc:Loc WindowTitle}" Height="760" Width="1240"
         MinHeight="560" MinWidth="900" Closed="MainWindow_Closed"
-        Background="{DynamicResource ApplicationBackgroundBrush}">
+        Background="{DynamicResource SolidBackgroundFillColorSecondaryBrush}">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrongStrokeColorDefaultBrush}" />
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrongStrokeColorDefaultBrush}" />
+        </Style>
+        <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrongStrokeColorDefaultBrush}" />
+        </Style>
+        <Style TargetType="TabControl" BasedOn="{StaticResource {x:Type TabControl}}">
+            <Setter Property="Background" Value="{DynamicResource ApplicationBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlStrongStrokeColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+            <Setter Property="Padding" Value="16,8" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="TabBorder" Margin="0,0,4,0" CornerRadius="4,4,0,0" BorderThickness="1,1,1,0"
+                                BorderBrush="{DynamicResource ControlStrongStrokeColorDefaultBrush}"
+                                Background="{DynamicResource SolidBackgroundFillColorSecondaryBrush}">
+                            <Grid>
+                                <ContentPresenter x:Name="TabHeader" ContentSource="Header" RecognizesAccessKey="True"
+                                                  Margin="{TemplateBinding Padding}" VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center" />
+                                <Border x:Name="SelectionIndicator" Height="3" VerticalAlignment="Bottom"
+                                        Background="{DynamicResource AccentFillColorDefaultBrush}" Visibility="Collapsed" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="TabBorder" Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
+                                <Setter TargetName="TabBorder" Property="BorderBrush" Value="{DynamicResource AccentTextFillColorPrimaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="TabBorder" Property="Background" Value="{DynamicResource ApplicationBackgroundBrush}" />
+                                <Setter TargetName="SelectionIndicator" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="TabHeader" Property="TextElement.FontWeight" Value="SemiBold" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="TabBorder" Property="BorderBrush" Value="{DynamicResource AccentTextFillColorPrimaryBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Margin="14">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -36,6 +86,10 @@
                                   Tag="Light" Click="ThemeItem_Click" />
                         <MenuItem x:Name="DarkThemeItem" Header="{loc:Loc ThemeDark}" IsCheckable="True"
                                   Tag="Dark" Click="ThemeItem_Click" />
+                        <Separator />
+                        <MenuItem x:Name="MicaBackgroundItem" Header="{loc:Loc MicaBackground}" IsCheckable="True"
+                                  StaysOpenOnClick="True" ToolTip="{loc:Loc MicaBackgroundToolTip}"
+                                  Click="MicaBackgroundItem_Click" />
                     </MenuItem>
                 </Menu>
                 <Button x:Name="OpenButton" Content="{loc:Loc OpenBacpac}" Padding="18,8" Click="OpenButton_Click" />
@@ -44,7 +98,7 @@
                 <TextBlock x:Name="FileText" Margin="14,0,0,0" VerticalAlignment="Center"
                            Text="{loc:Loc NoFileLoaded}" TextTrimming="CharacterEllipsis" />
             </DockPanel>
-            <Border Margin="0,10,0,0" Padding="10,7" Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}" BorderThickness="1">
+            <Border Margin="0,10,0,0" Padding="10,7" Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{DynamicResource ControlStrongStrokeColorDefaultBrush}" BorderThickness="1">
                 <TextBlock x:Name="DatabaseSummaryText" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="{loc:Loc NoDatabaseLoaded}"
                            TextTrimming="CharacterEllipsis" />
             </Border>
@@ -59,7 +113,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Border Grid.Column="0" BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
+                    <Border Grid.Column="0" BorderBrush="{DynamicResource ControlStrongStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
                         <DockPanel>
                             <TextBox x:Name="FilterBox" DockPanel.Dock="Top" Margin="0,0,0,8"
                                      ToolTip="{loc:Loc FilterTables}" TextChanged="FilterBox_TextChanged" />
@@ -67,7 +121,7 @@
                         </DockPanel>
                     </Border>
 
-                    <Border Grid.Column="2" BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="14">
+                    <Border Grid.Column="2" BorderBrush="{DynamicResource ControlStrongStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="14">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -174,7 +228,7 @@
                         <TextBox x:Name="QueryEditor" FontFamily="Consolas" FontSize="14" AcceptsReturn="True" AcceptsTab="True"
                                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                                  Text="{loc:Loc DefaultQuery}" />
-                        <DockPanel Grid.Row="1" Margin="0,8,0,0">
+                        <DockPanel Grid.Row="1" Margin="0,8,0,8">
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                                 <Button x:Name="ExecuteQueryButton" Content="{loc:Loc Execute}" Padding="18,7" IsEnabled="False"
                                         Click="ExecuteQueryButton_Click" />

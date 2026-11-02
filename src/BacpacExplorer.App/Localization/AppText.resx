@@ -9,6 +9,8 @@
   <data name="ThemeSystem" xml:space="preserve"><value>Use _Windows theme</value></data>
   <data name="ThemeLight" xml:space="preserve"><value>_Light</value></data>
   <data name="ThemeDark" xml:space="preserve"><value>_Dark</value></data>
+  <data name="MicaBackground" xml:space="preserve"><value>_Mica background</value></data>
+  <data name="MicaBackgroundToolTip" xml:space="preserve"><value>Use a wallpaper-tinted background with any theme. Requires Windows 11 22H2 or later.</value></data>
   <data name="OpenBacpac" xml:space="preserve"><value>Open BACPAC...</value></data>
   <data name="LoadDatabaseData" xml:space="preserve"><value>Load Database Data...</value></data>
   <data name="DatabaseDataReady" xml:space="preserve"><value>Database Data Ready</value></data>

@@ -18,15 +18,22 @@ public partial class App
         "BacpacExplorer", "theme.txt");
 
     internal ThemePreference SelectedTheme { get; private set; } = ThemePreference.System;
+    internal bool UseMicaBackground { get; private set; }
 
     private void InitializeTheme()
     {
         try
         {
-            if (File.Exists(ThemePreferencePath)
-                && Enum.TryParse<ThemePreference>(File.ReadAllText(ThemePreferencePath).Trim(), out var preference)
-                && Enum.IsDefined(preference))
-                SelectedTheme = preference;
+            if (File.Exists(ThemePreferencePath))
+            {
+                var lines = File.ReadAllLines(ThemePreferencePath);
+                if (lines.Length > 0
+                    && Enum.TryParse<ThemePreference>(lines[0].Trim(), out var preference)
+                    && Enum.IsDefined(preference))
+                    SelectedTheme = preference;
+                if (lines.Length > 1 && bool.TryParse(lines[1], out var useMica))
+                    UseMicaBackground = useMica;
+            }
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
         {
@@ -40,11 +47,21 @@ public partial class App
     {
         SelectedTheme = preference;
         ApplyTheme();
+        SaveThemePreference();
+    }
 
+    internal void SetMicaBackground(bool enabled)
+    {
+        UseMicaBackground = enabled;
+        SaveThemePreference();
+    }
+
+    private void SaveThemePreference()
+    {
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(ThemePreferencePath)!);
-            File.WriteAllText(ThemePreferencePath, preference.ToString());
+            File.WriteAllLines(ThemePreferencePath, [SelectedTheme.ToString(), UseMicaBackground.ToString()]);
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
         {

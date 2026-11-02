@@ -47,6 +47,7 @@ public partial class MainWindow : Window
     {
         var preference = Enum.Parse<ThemePreference>((string)((MenuItem)sender).Tag);
         ((App)Application.Current).SetTheme(preference);
+        UpdateBackdrop();
         UpdateThemeMenu();
     }
 
@@ -56,6 +57,14 @@ public partial class MainWindow : Window
         SystemThemeItem.IsChecked = preference == ThemePreference.System;
         LightThemeItem.IsChecked = preference == ThemePreference.Light;
         DarkThemeItem.IsChecked = preference == ThemePreference.Dark;
+        MicaBackgroundItem.IsChecked = ((App)Application.Current).UseMicaBackground;
+        MicaBackgroundItem.IsEnabled = SupportsMica;
+    }
+
+    private void MicaBackgroundItem_Click(object sender, RoutedEventArgs e)
+    {
+        ((App)Application.Current).SetMicaBackground(MicaBackgroundItem.IsChecked);
+        UpdateBackdrop();
     }
 
     private async void OpenButton_Click(object sender, RoutedEventArgs e)

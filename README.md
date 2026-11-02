@@ -13,6 +13,7 @@ A BACPAC normally contains a database's structure and data. BACPAC Explorer lets
 - Run read-only `SELECT` queries and view the results.
 - Export loaded query results to Excel (`.xlsx`) or CSV (`.csv`).
 - Follow the Windows app theme, or choose Light or Dark from the sun/moon icon menu at the top right. Your choice is remembered between launches.
+- Optionally enable **Mica background** in the same menu for a wallpaper-tinted background with any theme (Windows 11 22H2 or later).
 
 The original BACPAC file is never changed.
 
