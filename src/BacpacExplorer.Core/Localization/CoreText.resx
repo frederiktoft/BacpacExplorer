@@ -28,4 +28,5 @@
   <data name="ColumnUnnamedType" xml:space="preserve"><value>Column '{0}' has an unnamed data type.</value></data>
   <data name="BinaryPreview" xml:space="preserve"><value>{0}… ({1:N0} bytes)</value></data>
   <data name="GeneratedColumnName" xml:space="preserve"><value>Column{0}</value></data>
+  <data name="ExcelCellTextTooLong" xml:space="preserve"><value>A result value exceeds Excel's limit of 32,767 characters per cell. Export to CSV to preserve the complete value.</value></data>
 </root>

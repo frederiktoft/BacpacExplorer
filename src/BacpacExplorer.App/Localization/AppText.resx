@@ -85,4 +85,15 @@
   <data name="UnexpectedErrorStatus" xml:space="preserve"><value>An unexpected error occurred</value></data>
   <data name="UnexpectedErrorMessage" xml:space="preserve"><value>An unexpected error occurred while {0}. See the diagnostic output for details.</value></data>
   <data name="ByteUnits" xml:space="preserve"><value>B|KB|MB|GB|TB</value></data>
+  <data name="Export" xml:space="preserve"><value>Export</value></data>
+  <data name="ExportTo" xml:space="preserve"><value>Export to...</value></data>
+  <data name="ExportExcel" xml:space="preserve"><value>Excel (.xlsx)</value></data>
+  <data name="ExportCsv" xml:space="preserve"><value>CSV (.csv)</value></data>
+  <data name="ExportDialogTitle" xml:space="preserve"><value>Export results to {0}</value></data>
+  <data name="ExportDialogFilter" xml:space="preserve"><value>{0}|*{1}</value></data>
+  <data name="ExportTruncatedWarning" xml:space="preserve"><value>This query was limited to the first 1,000 rows. Only these loaded rows will be exported. Continue?</value></data>
+  <data name="ExportingResults" xml:space="preserve"><value>Exporting query results...</value></data>
+  <data name="ExportCompleted" xml:space="preserve"><value>Exported {0:N0} row(s).</value></data>
+  <data name="ExportFailed" xml:space="preserve"><value>Could not export query results</value></data>
+  <data name="ExportingResultsOperation" xml:space="preserve"><value>exporting query results</value></data>
 </root>

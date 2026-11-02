@@ -11,6 +11,7 @@ A BACPAC normally contains a database's structure and data. BACPAC Explorer lets
 - View stored rows in manageable pages.
 - Inspect long or multiline cell values.
 - Run read-only `SELECT` queries and view the results.
+- Export loaded query results to Excel (`.xlsx`) or CSV (`.csv`).
 - Follow the Windows app theme, or choose Light or Dark from the sun/moon icon menu at the top right. Your choice is remembered between launches.
 
 The original BACPAC file is never changed.
@@ -64,6 +65,14 @@ Queries are deliberately restricted:
 - Results are limited to 1,000 rows.
 - Queries time out after 30 seconds.
 - Queries cannot modify the database.
+
+After running a query, select **Export**, then **Excel (.xlsx)** or **CSV (.csv)**, and choose where to save the file. Export saves the loaded results in their original query order without running the query again. Empty results export column headers only.
+
+Excel exports include a bold, frozen header row and filters. Numbers, dates, and booleans use Excel cell types where supported; numbers exceeding Excel's 15 significant digits and dates with time zone offsets are saved as text to preserve their values. Text is stored as literal text. Values longer than Excel's 32,767-character cell limit require CSV instead.
+
+CSV exports use UTF-8 with a BOM, comma separators, invariant numeric formatting, and quoting for commas, quotes, and line breaks. CSV contains plain values; spreadsheet applications decide how to interpret them when opening the file.
+
+Both formats include column headers, export SQL `NULL` as blank cells, and retain the existing binary previews. If the query hit the 1,000-row limit, a notice appears before exporting those loaded rows.
 
 ## Temporary data and logs
 

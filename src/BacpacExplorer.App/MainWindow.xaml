@@ -182,6 +182,15 @@
                                         IsEnabled="False" Click="CancelQueryButton_Click" />
                                 <Button x:Name="QuerySelectedTableButton" Content="{loc:Loc QuerySelectedTable}" Padding="18,7"
                                         Margin="8,0,0,0" IsEnabled="False" Click="QuerySelectedTableButton_Click" />
+                                <Button x:Name="ExportButton" Content="{loc:Loc Export}" Padding="18,7" Margin="8,0,0,0"
+                                        IsEnabled="False" Click="ExportButton_Click">
+                                    <Button.ContextMenu>
+                                        <ContextMenu x:Name="ExportMenu" Placement="Bottom">
+                                            <MenuItem Header="{loc:Loc ExportTo}" IsEnabled="False" />
+                                            <Separator />
+                                        </ContextMenu>
+                                    </Button.ContextMenu>
+                                </Button>
                             </StackPanel>
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                                        Text="{loc:Loc QueryLimits}" />

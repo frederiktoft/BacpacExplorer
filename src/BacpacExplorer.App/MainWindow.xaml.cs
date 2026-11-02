@@ -1,9 +1,11 @@
 using System.Data;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BacpacExplorer.Core.Bacpac;
 using BacpacExplorer.Core.Database;
+using BacpacExplorer.Core.Exporting;
 using BacpacExplorer.Core.Models;
 using BacpacExplorer.Core.Querying;
 using BacpacExplorer.App.Localization;
@@ -28,12 +30,14 @@ public partial class MainWindow : Window
     private ISqlQueryService? _queryService;
     private CancellationTokenSource? _queryCancellation;
     private DataPage? _currentPage;
+    private QueryResult? _currentQueryResult;
     private bool _busy;
 
     public MainWindow()
     {
         _logger = App.LoggerFactory.CreateLogger<MainWindow>();
         InitializeComponent();
+        InitializeExportMenu();
         UpdateThemeMenu();
     }
 
@@ -234,6 +238,7 @@ public partial class MainWindow : Window
             StatusText.Text = AppText.Get("ExecutingReadOnlyQuery");
             var result = await _queryService!.ExecuteAsync(QueryEditor.Text, _queryCancellation.Token);
             QueryResultsGrid.ItemsSource = CreateDataTable(result.Columns, result.Rows).DefaultView;
+            _currentQueryResult = result;
 
             var summary = AppText.Format("QuerySummary", result.Rows.Count, result.Elapsed.TotalMilliseconds);
             if (result.WasTruncated)
@@ -278,6 +283,81 @@ public partial class MainWindow : Window
     }
 
     private void CancelQueryButton_Click(object sender, RoutedEventArgs e) => _queryCancellation?.Cancel();
+
+    private void InitializeExportMenu()
+    {
+        // Register another writer and its localized label here to add a format.
+        (IQueryResultExporter Exporter, string LabelKey)[] formats =
+        [
+            (new ExcelQueryResultExporter(), "ExportExcel"),
+            (new CsvQueryResultExporter(), "ExportCsv")
+        ];
+
+        foreach (var (exporter, labelKey) in formats)
+        {
+            var item = new MenuItem { Header = AppText.Get(labelKey), Tag = exporter };
+            item.Click += ExportFormat_Click;
+            ExportMenu.Items.Add(item);
+        }
+    }
+
+    private void ExportButton_Click(object sender, RoutedEventArgs e)
+    {
+        ExportMenu.PlacementTarget = ExportButton;
+        ExportMenu.IsOpen = true;
+    }
+
+    private async void ExportFormat_Click(object sender, RoutedEventArgs e)
+    {
+        if (_busy || _currentQueryResult is not { } result
+            || sender is not MenuItem { Tag: IQueryResultExporter exporter } item)
+            return;
+
+        if (result.WasTruncated && MessageBox.Show(this, AppText.Get("ExportTruncatedWarning"),
+            AppText.Get("DialogCaption"), MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
+            return;
+
+        var dialog = new SaveFileDialog
+        {
+            Title = AppText.Format("ExportDialogTitle", item.Header),
+            Filter = AppText.Format("ExportDialogFilter", item.Header, exporter.FileExtension),
+            DefaultExt = exporter.FileExtension,
+            FileName = $"QueryResults{exporter.FileExtension}",
+            AddExtension = true,
+            OverwritePrompt = true
+        };
+        if (dialog.ShowDialog(this) != true)
+            return;
+
+        try
+        {
+            SetBusy(true);
+            StatusText.Text = AppText.Get("ExportingResults");
+            // Finish serialization before touching the chosen file, and keep it off the UI thread.
+            var bytes = await Task.Run(() =>
+            {
+                using var stream = new MemoryStream();
+                exporter.Write(result, stream);
+                return stream.ToArray();
+            });
+            await File.WriteAllBytesAsync(dialog.FileName, bytes);
+            StatusText.Text = AppText.Format("ExportCompleted", result.Rows.Count);
+            if (result.WasTruncated)
+                StatusText.Text += AppText.Get("QueryTruncated");
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
+        {
+            ShowError(exception, AppText.Get("ExportFailed"), exception.Message);
+        }
+        catch (Exception exception)
+        {
+            ShowUnexpectedError(exception, AppText.Get("ExportingResultsOperation"));
+        }
+        finally
+        {
+            SetBusy(false);
+        }
+    }
 
     private void QuerySelectedTableButton_Click(object sender, RoutedEventArgs e)
     {
@@ -436,6 +516,8 @@ public partial class MainWindow : Window
 
     private void ResetQueryView()
     {
+        _currentQueryResult = null;
+        ExportButton.IsEnabled = false;
         QueryResultsGrid.SelectedCells.Clear();
         QueryResultsGrid.ItemsSource = null;
         QueryCellLabel.Text = AppText.Get("SelectedResultValue");
@@ -456,6 +538,7 @@ public partial class MainWindow : Window
         NextButton.IsEnabled = !busy && _currentPage?.HasNextPage == true;
         QueryEditor.IsEnabled = !busy;
         ExecuteQueryButton.IsEnabled = !busy && _database is not null;
+        ExportButton.IsEnabled = !busy && _currentQueryResult is not null;
         CancelQueryButton.IsEnabled = busy && _queryCancellation is not null;
         QuerySelectedTableButton.IsEnabled = !busy && _selectedTable is not null;
     }
