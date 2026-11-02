@@ -11,6 +11,7 @@ A BACPAC normally contains a database's structure and data. BACPAC Explorer lets
 - View stored rows in manageable pages.
 - Inspect long or multiline cell values.
 - Run read-only `SELECT` queries and view the results.
+- Follow the Windows app theme, or choose Light or Dark from the sun/moon icon menu at the top right. Your choice is remembered between launches.
 
 The original BACPAC file is never changed.
 

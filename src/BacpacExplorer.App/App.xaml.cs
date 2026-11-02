@@ -42,6 +42,7 @@ public partial class App : Application
             version,
             logging.LogDirectory);
 
+        InitializeTheme();
         base.OnStartup(e);
     }
 

@@ -34,6 +34,24 @@ public partial class MainWindow : Window
     {
         _logger = App.LoggerFactory.CreateLogger<MainWindow>();
         InitializeComponent();
+        UpdateThemeMenu();
+    }
+
+    private void ThemeMenu_SubmenuOpened(object sender, RoutedEventArgs e) => UpdateThemeMenu();
+
+    private void ThemeItem_Click(object sender, RoutedEventArgs e)
+    {
+        var preference = Enum.Parse<ThemePreference>((string)((MenuItem)sender).Tag);
+        ((App)Application.Current).SetTheme(preference);
+        UpdateThemeMenu();
+    }
+
+    private void UpdateThemeMenu()
+    {
+        var preference = ((App)Application.Current).SelectedTheme;
+        SystemThemeItem.IsChecked = preference == ThemePreference.System;
+        LightThemeItem.IsChecked = preference == ThemePreference.Light;
+        DarkThemeItem.IsChecked = preference == ThemePreference.Dark;
     }
 
     private async void OpenButton_Click(object sender, RoutedEventArgs e)

@@ -5,6 +5,10 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="WindowTitle" xml:space="preserve"><value>BACPAC Explorer</value></data>
+  <data name="ThemeMenu" xml:space="preserve"><value>Theme</value></data>
+  <data name="ThemeSystem" xml:space="preserve"><value>Use _Windows theme</value></data>
+  <data name="ThemeLight" xml:space="preserve"><value>_Light</value></data>
+  <data name="ThemeDark" xml:space="preserve"><value>_Dark</value></data>
   <data name="OpenBacpac" xml:space="preserve"><value>Open BACPAC...</value></data>
   <data name="LoadDatabaseData" xml:space="preserve"><value>Load Database Data...</value></data>
   <data name="DatabaseDataReady" xml:space="preserve"><value>Database Data Ready</value></data>
