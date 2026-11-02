@@ -37,7 +37,7 @@
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger SourceName="TabBorder" Property="IsMouseOver" Value="True">
                                 <Setter TargetName="TabBorder" Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
                                 <Setter TargetName="TabBorder" Property="BorderBrush" Value="{DynamicResource AccentTextFillColorPrimaryBrush}" />
                             </Trigger>
@@ -228,7 +228,7 @@
                         <TextBox x:Name="QueryEditor" FontFamily="Consolas" FontSize="14" AcceptsReturn="True" AcceptsTab="True"
                                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                                  Text="{loc:Loc DefaultQuery}" />
-                        <DockPanel Grid.Row="1" Margin="0,8,0,8">
+                        <DockPanel Grid.Row="1" Margin="0,8,0,0">
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                                 <Button x:Name="ExecuteQueryButton" Content="{loc:Loc Execute}" Padding="18,7" IsEnabled="False"
                                         Click="ExecuteQueryButton_Click" />
@@ -252,7 +252,7 @@
                     </Grid>
 
                     <GridSplitter Grid.Row="1" Height="8" HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                                  ResizeDirection="Rows" ResizeBehavior="PreviousAndNext" Background="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                  ResizeDirection="Rows" ResizeBehavior="PreviousAndNext" Background="Transparent"
                                   ShowsPreview="True" ToolTip="{loc:Loc ResizeQueryToolTip}" />
 
                     <DataGrid x:Name="QueryResultsGrid" Grid.Row="2" AutoGenerateColumns="True" IsReadOnly="True"
